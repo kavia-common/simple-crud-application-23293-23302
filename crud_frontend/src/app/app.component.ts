@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
+/**
+ * Root shell component with top navigation and main content area.
+ * Navigation uses RouterLink to avoid direct window access for SSR safety.
+ */
 @Component({
   selector: 'app-root',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'crud_frontend is being generated';
+  title = 'Simple CRUD';
 }

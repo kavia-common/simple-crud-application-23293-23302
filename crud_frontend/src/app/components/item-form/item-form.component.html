@@ -1,0 +1,33 @@
+<section class="card">
+  <header class="card-header">
+    <h2>{{ title }}</h2>
+    <a class="btn btn-secondary" routerLink="/items">Back</a>
+  </header>
+
+  <div class="card-body">
+    <div *ngIf="loading()">Loading...</div>
+    <div *ngIf="error()" class="error">{{ error() }}</div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate *ngIf="!loading()">
+      <div class="field">
+        <label for="name">Name<span class="required">*</span></label>
+        <input id="name" type="text" formControlName="name" placeholder="Enter name" [class.invalid]="form.controls['name'].invalid && form.controls['name'].touched" />
+        <div class="hint">Enter a concise name for the item.</div>
+        <div class="validation" *ngIf="form.controls['name'].touched && form.controls['name'].hasError('required')">Name is required.</div>
+        <div class="validation" *ngIf="form.controls['name'].touched && form.controls['name'].hasError('maxlength')">Name is too long.</div>
+      </div>
+
+      <div class="field">
+        <label for="description">Description</label>
+        <textarea id="description" rows="4" formControlName="description" placeholder="Optional description"></textarea>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-primary" type="submit" [disabled]="saving() || form.invalid">
+          {{ saving() ? 'Saving...' : 'Save' }}
+        </button>
+        <a class="btn" routerLink="/items">Cancel</a>
+      </div>
+    </form>
+  </div>
+</section>

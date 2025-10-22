@@ -1,3 +1,15 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-</div>
+<header class="top-nav">
+  <div class="nav-inner">
+    <a class="brand" routerLink="/">Ocean CRUD</a>
+    <nav class="links">
+      <a routerLink="/items" routerLinkActive="active" ariaCurrentWhenActive="page">Items</a>
+      <a routerLink="/items/new" routerLinkActive="active" ariaCurrentWhenActive="page">New Item</a>
+    </nav>
+  </div>
+</header>
+
+<main class="content">
+  <div class="content-inner">
+    <router-outlet />
+  </div>
+</main>
